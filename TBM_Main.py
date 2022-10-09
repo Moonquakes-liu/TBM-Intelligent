@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: TBM_Main for python                                            *
-# * Version:  1.0.0                                                          *
-# * Date:     2022-10-1                                                      *
+# * Version:  1.0.1                                                          *
+# * Date:     2022-10-9                                                      *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -28,7 +28,7 @@ def Check_Update():
             shutil.copyfile(current_path + '\\temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
             print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
 
-    now_version = {'Main.py': TBM_Main_version, 'TBM_REPORT.py': TBM_REPORT_version, 'TBM_CYCLE.py': TBM_CYCLE_version}
+    now_version = {'TBM_Main.py': TBM_Main_version, 'TBM_REPORT.py': TBM_REPORT_version, 'TBM_CYCLE.py': TBM_CYCLE_version}
     temp, network = 'temp\\', True
     URL = 'https://github.com/Moonquakes-liu/TBM-Intelligent/archive/refs/heads/'
     if not os.path.exists(temp):
@@ -47,7 +47,7 @@ def Check_Update():
     shutil.rmtree(temp)
 
 
-TBM_Main_version = '1.0.0'  # 版本号，请勿修改！！！
+TBM_Main_version = '1.0.1'  # 版本号，请勿修改！！！
 Check_Update()  # 检查更新模块，请勿修改！！！
 
 
