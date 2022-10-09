@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: EX_CYCLE for python                                            *
-# * Version:  1.0.0                                                          *
-# * Date:     2022-10-1                                                      *
+# * Version:  1.0.1                                                          *
+# * Date:     2022-10-9                                                      *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -18,7 +18,7 @@ from functools import reduce
 import pandas as pd
 from matplotlib import pyplot as plt
 
-TBM_CYCLE_version = '1.0.0'  # 版本号，请勿修改！！！
+TBM_CYCLE_version = '1.0.1'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置字体
 plt.rcParams['axes.unicode_minus'] = False  # 坐标轴的负号正常显示
@@ -27,6 +27,7 @@ plt.rcParams.update({'font.size': 17})  # 设置字体大小
 
 class TBM_CYCLE(object):
     def __init__(self):
+        self.Number = 1  # 初始化循环段编号
         self.D_before = 0  # 初始化上一时刻的掘进状态
         self.interval_time = 0  # 初始化两个相邻掘进段的时间间隔为0
         self.first_write = True  # 将索引文件写入次数初始化为第一次
@@ -116,10 +117,12 @@ class TBM_CYCLE(object):
         for num, file in zip([i + 1 for i in range(len(file_name_list))], file_name_list):  # 遍历每个文件
             start = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
             try:  # 首先尝试使用默认方式进行csv文件读取
-                data_raw = pd.read_csv(os.path.join(_input_path_, file))  # 读取文件
+                data_raw = pd.read_csv(os.path.join(_input_path_, file), index_col=0)  # 读取文件
             except UnicodeDecodeError:  # 若默认方式读取csv文件失败，则添加'gb2312'编码后重新进行尝试
-                data_raw = pd.read_csv(os.path.join(_input_path_, file), encoding='gb2312')  # 读取文件
+                data_raw = pd.read_csv(os.path.join(_input_path_, file), index_col=0, encoding='gb2312')  # 读取文件
+            data_raw.index = [i for i in range(data_raw.shape[0])]  # 重建新数据集的行索引
             data_raw.drop(data_raw.tail(1).index, inplace=True)  # 删除文件最后一行
+            data_raw = data_raw.loc[:, ~data_raw.columns.str.contains('Unnamed')]  # 删除Unnamed空列
             after_process = self.continuous_data_process(data_raw)  # 调用continuous_data_process函数对相邻两天数据存在连续性的情况进行处理
             self.boring_cycle_extract(after_process)  # 调用boring_cycle_extract函数对原始数据中的循环段进行提取
             end = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
@@ -154,10 +157,11 @@ class TBM_CYCLE(object):
             with open(index_path, 'w', encoding='gb2312', newline='') as f:  # 新建索引文件
                 csv.writer(f).writerow(['桩号', '时间', '掘进时间'])  # 写入标签数据
                 self.first_write = False  # 第一次写入完成
-        csv_path = os.path.join(self.out_path, '%s-%s年%s月%s日 %s时%s分%s秒.csv' % (Mark, year, mon, d, h, m, s))  # 循环段保存路径
+        csv_path = os.path.join(self.out_path, '%00005d %s-%s年%s月%s日 %s时%s分%s秒.csv' % (self.Number, Mark, year, mon, d, h, m, s))  # 循环段保存路径
         boring_cycle_data.to_csv(csv_path, index=False, encoding='gb2312')  # 保存csv文件
-        input_csv = open(csv_path, 'a', newline='')  # 打开索引文件
-        csv.writer(input_csv, dialect='excel').writerow([Mark, Time, _key_[1] - _key_[0]])  # 写入数据记录
+        input_csv = open(index_path, 'a', newline='')  # 打开索引文件
+        csv.writer(input_csv, dialect='excel').writerow([self.Number, Mark, Time, _key_[1] - _key_[0]])  # 写入数据记录
+        self.Number += 1  # 循环段自增
 
 
 def key_parameter_extraction(_input_path_, _out_path_):
