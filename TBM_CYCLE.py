@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: EX_CYCLE for python                                            *
-# * Version:  1.0.1                                                          *
-# * Date:     2022-10-9                                                      *
+# * Version:  1.0.2                                                          *
+# * Date:     2022-10-13                                                     *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -18,7 +18,7 @@ from functools import reduce
 import pandas as pd
 from matplotlib import pyplot as plt
 
-TBM_CYCLE_version = '1.0.1'  # 版本号，请勿修改！！！
+TBM_CYCLE_version = '1.0.2'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置字体
 plt.rcParams['axes.unicode_minus'] = False  # 坐标轴的负号正常显示
@@ -135,9 +135,7 @@ class TBM_CYCLE(object):
                   '正在处理文件: {\033[0;33m%s\033[0m}  ' % file.center(20),
                   '[所用时间%ds / 平均时间%ds]' % (time_diff, mean_time), '  ', '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time,
                   end='')
-        print('\r', '->->', '\033[0;33mThe Raw-Data contains %d files, which took %6.2f hours\033[0m'
-              % (len(file_name_list), sum_time))
-        print(' ->->', '\033[0;32mBoring-cycle extract completed!\033[0m')
+        print('\r', ' ->->', '\033[0;32mBoring-cycle extract completed, , which took %6.2f hours\033[0m' % sum_time)
 
     def boring_cycle_save(self, TBM_Data, _key_):
         """
