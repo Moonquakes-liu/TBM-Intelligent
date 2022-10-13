@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: EX_CYCLE for python                                            *
-# * Version:  1.0.2                                                          *
+# * Version:  1.1.0                                                          *
 # * Date:     2022-10-13                                                     *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
@@ -19,7 +19,7 @@ from functools import reduce
 import pandas as pd
 from matplotlib import pyplot as plt
 
-TBM_CYCLE_version = '1.0.2'  # 版本号，请勿修改！！！
+TBM_CYCLE_version = '1.1.0'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置字体
 plt.rcParams['axes.unicode_minus'] = False  # 坐标轴的负号正常显示
