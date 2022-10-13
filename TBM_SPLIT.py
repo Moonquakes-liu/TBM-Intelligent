@@ -15,7 +15,7 @@ import time
 import pandas as pd
 from scipy import signal
 
-TBM_CYCLE_version = '1.0.0'  # 版本号，请勿修改！！！
+TBM_SPLIT_version = '1.0.0'  # 版本号，请勿修改！！！
 DIR_OUT = ['\\Free running', '\\Loading', '\\Boring', '\\Loading + Boring', '\\Boring cycle']  # 分割后循环段文件保存文件夹
 noise_removal_list = ['Torque', 'Thrust', 'PR']
 
