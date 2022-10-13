@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: TBM_SPLIT for python                                           *
-# * Version:  1.0.0                                                          *
-# * Date:     2022-10-1                                                      *
+# * Version:  1.1.0                                                          *
+# * Date:     2022-10-13                                                      *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -15,7 +15,7 @@ import time
 import pandas as pd
 from scipy import signal
 
-TBM_SPLIT_version = '1.0.0'  # 版本号，请勿修改！！！
+TBM_SPLIT_version = '1.1.0'  # 版本号，请勿修改！！！
 DIR_OUT = ['\\Free running', '\\Loading', '\\Boring', '\\Loading + Boring', '\\Boring cycle']  # 分割后循环段文件保存文件夹
 noise_removal_list = ['Torque', 'Thrust', 'PR']
 time_val = []  # 初始化时间存储
