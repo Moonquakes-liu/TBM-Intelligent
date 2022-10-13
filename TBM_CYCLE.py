@@ -135,7 +135,7 @@ class TBM_CYCLE(object):
                   '正在处理文件: {\033[0;33m%s\033[0m}  ' % file.center(20),
                   '[所用时间%ds / 平均时间%ds]' % (time_diff, mean_time), '  ', '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time,
                   end='')
-        print('\r', ' ->->', '\033[0;32mBoring-cycle extract completed, , which took %6.2f hours\033[0m' % sum_time)
+        print('\r', ' ->->', '\033[0;32mBoring-cycle extract completed, which took %6.2f hours\033[0m' % sum_time)
 
     def boring_cycle_save(self, TBM_Data, _key_):
         """
