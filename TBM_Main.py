@@ -31,10 +31,10 @@ def Check_Update():
         if now < new:
             zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
             current_path = os.path.dirname(os.path.abspath(__file__))
-            old_program = current_path + 'Old Programs'
+            old_program = current_path + '\\Old Programs'
             if not os.path.exists(old_program):
                 os.makedirs(old_program)
-                shutil.copyfile(os.path.join(current_path, name), os.path.join(current_path, '%s version%s' % (name, now)))
+            shutil.copyfile(os.path.join(current_path, name), os.path.join(current_path, '%s version%s.py' % (name[:,-3], now)))
             shutil.copyfile(current_path + '\\temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
             if Type == 'minor update':
                 print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
