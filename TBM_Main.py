@@ -30,7 +30,7 @@ def Check_Update():
         if now < new:
             zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
             current_path = os.path.dirname(os.path.abspath(__file__))
-            shutil.copyfile(current_path + '\\.temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
+            shutil.copyfile(current_path + '\\temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
             if Type == 'minor update':
                 print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
             if Type == 'main update':
@@ -41,7 +41,7 @@ def Check_Update():
                        'TBM_CYCLE.py': TBM_CYCLE_version, 'TBM_SPLIT.py': TBM_SPLIT_version}
     except NameError:
         now_version = {'TBM_Main.py': TBM_Main_version, 'TBM_REPORT.py': TBM_REPORT_version,'TBM_CYCLE.py': TBM_CYCLE_version}
-    temp, network = '.temp\\', True
+    temp, network = 'temp\\', True
     URL = 'https://github.com/Moonquakes-liu/TBM-Intelligent/archive/refs/heads/'
     if not os.path.exists(temp):
         os.mkdir(temp)
