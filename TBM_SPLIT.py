@@ -74,7 +74,7 @@ class TBM_SPLIT(object):
             print('\r', '->->', '[第%d个 / 共%d个]  ' % (num, len(file_name_list)),
                   '[所用时间%ds / 平均时间%ds]' % (time_diff, mean_time), '  ',
                   '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time, end='')
-        print(' ->->', '\033[0;32mData_Split completed, which took %6.2f hours!\033[0m' % sum_time)
+        print('\r', ' ->->', '\033[0;32mData_Split completed, which took %6.2f hours!\033[0m' % sum_time)
 
     def get_RS_index(self, _data_):
         """获取空推、上升、稳定、下降的关键点"""
