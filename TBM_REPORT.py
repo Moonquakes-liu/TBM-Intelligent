@@ -144,7 +144,7 @@ class TBM_REPORT(object):
                   % (time_diff, mean_time), '  ', '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time, end='')
         else:
             sum_time = round(sum(self.time_val) / 3600, 2)  # 计算程序执行的总时间
-            print('\r', ' ->->', '\033[0;32mPDF generation completed, , which took %6.2f hours\033[0m' % sum_time)
+            print('\r', ' ->->', '\033[0;32mPDF generation completed, which took %6.2f hours\033[0m' % sum_time)
 
     def MergePDF(self,  _out_path_):
         """合并目录pdf和正文pdf"""
