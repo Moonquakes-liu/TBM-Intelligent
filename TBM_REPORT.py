@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: TBM_REPORT for python                                          *
-# * Version:  1.0.1                                                          *
+# * Version:  1.1.0                                                          *
 # * Date:     2022-10-13                                                      *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
@@ -21,7 +21,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from fpdf import FPDF
 from matplotlib import pyplot as plt
 
-TBM_REPORT_version = '1.0.1'  # 版本号，请勿修改！！！
+TBM_REPORT_version = '1.1.0'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
 ROCK_GRADE = {1: 'Ⅰ', 2: 'Ⅱ', 3: 'Ⅲ', 4: 'Ⅳ', 5: 'Ⅴ', 6: 'Ⅵ'}  # 定义围岩等级和与之对应的字符表达（字典类型）
 KEY_NAME_EXAMPLE = [['Number', '', 'Start No', '', 'Start Time', ''], ['Rock mass', '', 'Length', '', 'End Time', '']]
