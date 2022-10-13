@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: TBM_REPORT for python                                          *
-# * Version:  1.0.0                                                          *
-# * Date:     2022-10-1                                                      *
+# * Version:  1.0.1                                                          *
+# * Date:     2022-10-13                                                      *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -20,7 +20,7 @@ import pandas as pd
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from fpdf import FPDF
 
-TBM_REPORT_version = '1.0.0'  # 版本号，请勿修改！！！
+TBM_REPORT_version = '1.0.1'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
 ROCK_GRADE = {1: 'Ⅰ', 2: 'Ⅱ', 3: 'Ⅲ', 4: 'Ⅳ', 5: 'Ⅴ', 6: 'Ⅵ'}  # 定义围岩等级和与之对应的字符表达（字典类型）
 KEY_NAME_EXAMPLE = [['Number', '', 'Start No', '', 'Start Time', ''], ['Rock mass', '', 'Length', '', 'End Time', '']]
@@ -144,9 +144,7 @@ class TBM_REPORT(object):
                   % (time_diff, mean_time), '  ', '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time, end='')
         else:
             sum_time = round(sum(self.time_val) / 3600, 2)  # 计算程序执行的总时间
-            print('\r', '->->',
-                  '\033[0;33mThe PDF contains %d pages, which took %6.2f hours\033[0m' % (self.page_sum, sum_time))
-            print(' ->->', '\033[0;32mPDF generation completed!\033[0m')
+            print('\r', ' ->->', '\033[0;32mPDF generation completed, , which took %6.2f hours\033[0m' % sum_time)
 
     def MergePDF(self,  _out_path_):
         """合并目录pdf和正文pdf"""
