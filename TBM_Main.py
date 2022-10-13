@@ -72,7 +72,10 @@ def Check_Update():
 
 
 TBM_Main_version = '1.1.2'  # 版本号，请勿修改！！！
+# 在检查更新前建议先备份之前的py文件
 Check_Update()  # 检查更新模块，请勿修改！！！
+
+
 start = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
 print('\033[0;33m请将本程序及其附属模块均放置在要提取的文件夹上一级目录下，如要提取数据的文件夹在{···/RawData}，则程序文件放置在{···/}下！！！\033[0m')
 Root_Path = os.path.dirname(os.path.abspath(__file__))  # 文件存放根目录（可修改）
