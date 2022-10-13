@@ -140,7 +140,7 @@ class TBM_REPORT(object):
             self.time_val.append(time_diff)  # 对每个时间差进行保存，用于计算平均时间
             mean_time = int(sum(self.time_val) / len(self.time_val))  # 计算平均时间
             sum_time = round(sum(self.time_val) / 3600, 2)  # 计算程序执行的总时间
-            print('\r', '->->', '[第%d页 / 共%d页]  ' % (math.ceil(cycle / 6), self.page_sum), '[所用时间%ds / 平均时间%ds]'
+            print('\r', ' ->->', '[第%d页 / 共%d页]  ' % (math.ceil(cycle / 6), self.page_sum), '[所用时间%ds / 平均时间%ds]'
                   % (time_diff, mean_time), '  ', '\033[0;33m累积时间:%6.2f小时\033[0m' % sum_time, end='')
         else:
             sum_time = round(sum(self.time_val) / 3600, 2)  # 计算程序执行的总时间
