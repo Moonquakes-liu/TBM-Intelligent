@@ -34,8 +34,8 @@ def Check_Update():
             old_program = current_path + '\\Old Programs'
             if not os.path.exists(old_program):
                 os.makedirs(old_program)
-            shutil.copyfile(os.path.join(current_path, name), os.path.join(old_program, '%s version%s.py' % (name[:-3], now)))
             shutil.copyfile(current_path + '\\temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
+            shutil.copyfile(os.path.join(current_path, name), os.path.join(old_program, '%s version%s.py' % (name[:-3], now)))
             if Type == 'minor update':
                 print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
             if Type == 'main update':
