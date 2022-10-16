@@ -95,8 +95,6 @@ class TBM_SPLIT(object):
 
 def butter_worth_filter(_input_path_, _out_path_, N=2, Wc=0.2):
     """巴特沃斯滤波器"""
-    global time_val
-    time_val = []
     file_name_list = os.listdir(_input_path_)  # 获取输入文件夹下的所有文件名，并将其保存
     for num, file_name in zip([i + 1 for i in range(len(file_name_list))], file_name_list):  # 遍历每个文件
         start = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
