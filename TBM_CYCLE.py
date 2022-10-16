@@ -20,9 +20,6 @@ import pandas as pd
 
 TBM_CYCLE_version = '1.1.1'  # 版本号，请勿修改！！！
 warnings.filterwarnings("ignore")  # 忽略警告信息
-plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置字体
-plt.rcParams['axes.unicode_minus'] = False  # 坐标轴的负号正常显示
-plt.rcParams.update({'font.size': 17})  # 设置字体大小
 time_val = []  # 初始化时间存储
 
 
