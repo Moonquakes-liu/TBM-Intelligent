@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # ****************************************************************************
 # * Software: TBM_Main for python                                            *
-# * Version:  1.1.2                                                          *
-# * Date:     2022-10-13                                                      *
+# * Version:  1.1.5                                                          *
+# * Date:     2022-10-17                                                     *
 # * Last update: 2022-10-1                                                   *
 # * License:  LGPL v1.0                                                      *
 # * Maintain address https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A         *
@@ -19,59 +19,68 @@ import zipfile
 import pandas as pd
 from TBM_CYCLE import TBM_CYCLE, key_parameter_extraction, TBM_CYCLE_version
 from TBM_REPORT import TBM_REPORT, plot_parameters_TBM, TBM_REPORT_version
-try:
-    from TBM_SPLIT import TBM_SPLIT, butter_worth_filter, TBM_SPLIT_version
-except ModuleNotFoundError:
-    None
+from TBM_SPLIT import TBM_SPLIT, butter_worth_filter, TBM_SPLIT_version
 
 
 def Check_Update():
     """用于检查文件更新， 请勿修改"""
-    def Update_file(name, now, new, path, Type):
+    def Update_file(name, now, new, path):  # 文件更新模块
         if now < new:
             zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
-            current_path = os.path.dirname(os.path.abspath(__file__))
-            old_program = current_path + '\\Old Programs'
-            if not os.path.exists(old_program):
-                os.makedirs(old_program)
-            shutil.copyfile(current_path + '\\temp\\TBM-Intelligent-main\\%s' % name, os.path.join(current_path, name))
-            shutil.copyfile(os.path.join(current_path, name), os.path.join(old_program, '%s version%s.py' % (name[:-3], now)))
-            if Type == 'minor update':
-                print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
-            if Type == 'main update':
-                print(' ->->', '\033[0;32mPlease restart the program!!!\033[0m')
-                sys.exit()
+            current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
+            old_program_path = current_path + '\\Old-Programs'  # 旧文件备份路径
+            old_file_name = os.path.join(old_program_path, '%s version%s.py' % (name[:-3], now))  # 要备份的旧文件名称
+            new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
+            if not os.path.exists(old_program_path):
+                os.makedirs(old_program_path)  # 创建文件夹
+            shutil.copyfile(os.path.join(current_path, name), old_file_name)  # 备份旧文件
+            shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
+            print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
+            return True
+
+    def Add_file(name, new, path):  # 增加新功能模块
+        zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
+        current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
+        new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
+        shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
+        print(' ->->', '\033[0;33mAdded %s successfully! Version: %s\033[0m' % (name, new))
+        return True
+
+    now_version = {}  # 当前版本信息
+    for py_file in os.listdir(os.path.dirname(os.path.abspath(__file__))):  # 获取当前版本信息
+        if '.py' in py_file:
+            for lines in open(py_file, encoding='utf-8'):
+                if 'Version' in lines:
+                    now_version.update({py_file: lines[14:19]})
+                    break
+    Temp_path, Network, update = '__temp__\\', True, False  # 临时文件存放位置，是否连接到网络
+    New_File_URL = 'https://github.com/Moonquakes-liu/TBM-Intelligent/archive/refs/heads/'
+    if not os.path.exists(Temp_path):
+        os.mkdir(Temp_path)
+    filepath = os.path.join(Temp_path, 'main.zip')
     try:
-        now_version = {'TBM_Main.py': TBM_Main_version, 'TBM_REPORT.py': TBM_REPORT_version,
-                       'TBM_CYCLE.py': TBM_CYCLE_version, 'TBM_SPLIT.py': TBM_SPLIT_version}
-    except NameError:
-        now_version = {'TBM_Main.py': TBM_Main_version, 'TBM_REPORT.py': TBM_REPORT_version,'TBM_CYCLE.py': TBM_CYCLE_version}
-    temp, network = 'temp\\', True
-    URL = 'https://github.com/Moonquakes-liu/TBM-Intelligent/archive/refs/heads/'
-    if not os.path.exists(temp):
-        os.mkdir(temp)
-    filepath = os.path.join(temp, 'main.zip')
-    try:
-        urllib.request.urlretrieve(URL + 'main.zip', filepath)
+        urllib.request.urlretrieve(New_File_URL + 'main.zip', filepath)
     except urllib.error.URLError:
         print('\033[0;31mInternet connection failed, unable to check for updates!!!\033[0m')
-        network = False
-    if network:
-        zipfile.ZipFile(filepath, 'r').extract('TBM-Intelligent-main/version', temp)
-        new_version = pd.read_csv(os.path.join(temp, 'TBM-Intelligent-main/version'), index_col=0, encoding='gb2312').values
-        if new_version.shape[0] > len(now_version):
-            print(' ->->', '\033[0;33mAdded %s successfully! Version: %s\033[0m' % (new_version[-1, 0], new_version[-1, 1]))
-            Update_file(new_version[-1, 0], '0.0.0', new_version[-1, 1], temp, 'main update')
-        elif now_version['TBM_Main.py'] < new_version[0, 1]:
-            print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (new_version[0, 0], now_version['TBM_Main.py'], new_version[0, 1]))
-            Update_file(new_version[0, 0], now_version[new_version[0, 0]], new_version[0, 1], temp, 'main update')
+        Network = False
+    if Network:
+        zipfile.ZipFile(filepath, 'r').extract('TBM-Intelligent-main/version', Temp_path)
+        new_version = pd.read_csv(os.path.join(Temp_path, 'TBM-Intelligent-main/version'), index_col=0).values  # 新版本信息
+        if len(now_version) < len(new_version):  # 增加新功能
+            for number in range(0, len(now_version) - len(new_version), -1):
+                if Add_file(new_version[number-1, 0], new_version[number-1, 1], Temp_path):
+                    update = True
         else:
-            for file, version in new_version[1:]:
-                Update_file(file, now_version[file], version, temp, 'minor update')
-    shutil.rmtree(temp)
+            for file, version in new_version:
+                if Update_file(file, now_version[file], version, Temp_path):
+                    update = True
+    shutil.rmtree(Temp_path)
+    if update:
+        print(' ->->',
+              '\033[0;32mThe Raw program has been saved to "...\\Old-Programs", Please restart the program!!!\033[0m')
+        sys.exit()
 
 
-TBM_Main_version = '1.1.2'  # 版本号，请勿修改！！！
 # 在检查更新前建议先备份之前的py文件
 Check_Update()  # 检查更新模块，请勿修改！！！
 
