@@ -30,6 +30,14 @@ def Check_Update():
             current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
             old_program_path = current_path + '\\Old-Programs'  # 旧文件备份路径
             old_file_name = os.path.join(old_program_path, '%s version%s.py' % (name[:-3], now))  # 要备份的旧文件名称
+            if name == 'TBM_Main.py':
+                for names in ['Update.py', 'update_inf']:
+                    zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % names, path)
+                    new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % names  # 下载的新文件名称
+                    shutil.copyfile(new_file_name, os.path.join(current_path + '\\__temp__', names))  # 更新新文件
+                from __temp__.Update import Update
+                Update()
+                return True
             new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
             if not os.path.exists(old_program_path):
                 os.makedirs(old_program_path)  # 创建文件夹
