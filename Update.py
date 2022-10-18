@@ -3,8 +3,7 @@ import os
 
 
 def replace(name, tar_mess, replace_mess):
-    file_name = os.path.join(os.path.dirname(os.path.abspath(__file__))[:-10], name)
-    print(file_name)
+    file_name = os.path.join(os.path.dirname(os.path.abspath(__file__))[:-9], name)
     with open(file_name, "r", encoding="utf-8") as F:
         lines = F.readlines()
     with open(file_name, "w", encoding="utf-8") as f_w:
