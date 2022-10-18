@@ -18,6 +18,8 @@ def Update():
     txt = []
     for Lines in f:
         txt.append(Lines.strip())
+    print(txt)
     for new_line in txt:
+        print(New_line)
         new_line = str(new_line)
         replace(new_line.split('->')[0], new_line.split('->')[1], new_line.split('->')[2])
