@@ -24,43 +24,6 @@ from TBM_SPLIT import TBM_SPLIT, butter_worth_filter, TBM_SPLIT_version
 
 def Check_Update():
     """用于检查文件更新， 请勿修改"""
-    def Update_file(name, now, new, path):  # 文件更新模块
-        if now < new:
-            zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
-            current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
-            old_program_path = current_path + '\\Old-Programs'  # 旧文件备份路径
-            old_file_name = os.path.join(old_program_path, '%s version%s.py' % (name[:-3], now))  # 要备份的旧文件名称
-            if name == 'TBM_Main.py':
-                for names in ['Update.py', 'update_inf']:
-                    zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % names, path)
-                    new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % names  # 下载的新文件名称
-                    shutil.copyfile(new_file_name, os.path.join(current_path + '\\__temp__', names))  # 更新新文件
-                from __temp__.Update import Update
-                Update()
-                return True
-            new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
-            if not os.path.exists(old_program_path):
-                os.makedirs(old_program_path)  # 创建文件夹
-            shutil.copyfile(os.path.join(current_path, name), old_file_name)  # 备份旧文件
-            shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
-            print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now, new))
-            return True
-
-    def Add_file(name, new, path):  # 增加新功能模块
-        zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
-        current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
-        new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
-        shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
-        print(' ->->', '\033[0;33mAdded %s successfully! Version: %s\033[0m' % (name, new))
-        return True
-
-    now_version = {}  # 当前版本信息
-    for py_file in os.listdir(os.path.dirname(os.path.abspath(__file__))):  # 获取当前版本信息
-        if '.py' in py_file:
-            for lines in open(py_file, encoding='utf-8'):
-                if 'Version' in lines:
-                    now_version.update({py_file: lines[14:19]})
-                    break
     Temp_path, Network, update = '__temp__\\', True, False  # 临时文件存放位置，是否连接到网络
     New_File_URL = 'https://github.com/Moonquakes-liu/TBM-Intelligent/archive/refs/heads/'
     if not os.path.exists(Temp_path):
@@ -72,23 +35,13 @@ def Check_Update():
         print('\033[0;31mInternet connection failed, unable to check for updates!!!\033[0m')
         Network = False
     if Network:
-        zipfile.ZipFile(filepath, 'r').extract('TBM-Intelligent-main/version', Temp_path)
-        new_version = pd.read_csv(os.path.join(Temp_path, 'TBM-Intelligent-main/version'), index_col=0).values  # 新版本信息
-        if len(now_version) < len(new_version):  # 增加新功能
-            for number in range(0, len(now_version) - len(new_version), -1):
-                if Add_file(new_version[number-1, 0], new_version[number-1, 1], Temp_path):
-                    update = True
-        else:
-            for file, version in new_version:
-                if Update_file(file, now_version[file], version, Temp_path):
-                    update = True
-    shutil.rmtree(Temp_path)
-    if update:
-        print(' ->->',
-              '\033[0;32mThe Raw program has been saved to "...\\Old-Programs", Please restart the program!!!\033[0m')
-        sys.exit()
+        zipfile.ZipFile(filepath, 'r').extract('TBM-Intelligent-main/Update.py', Temp_path)
+        current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
+        new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\Update.py'  # 下载的新文件名称
+        shutil.copyfile(new_file_name, os.path.join(current_path + '\\__temp__', 'Update.py'))  # 更新新文件
+        from __temp__.Update import Update
 
-
+        
 # 在检查更新前建议先备份之前的py文件
 Check_Update()  # 检查更新模块，请勿修改！！！
 
