@@ -67,7 +67,7 @@ def add(file_path, tar_mess, add_mess):
 
 def reconstitution(name, new_vision, path):
     now_version = {}  # 当前版本信息
-    for py_file in os.listdir(os.path.dirname(os.path.abspath(__file__))):  # 获取当前版本信息
+    for py_file in os.listdir(os.path.dirname(os.path.abspath(__file__))[:-8]):  # 获取当前版本信息
         if '.py' in py_file:
             for lines in open(py_file, encoding='utf-8'):
                 if 'Version' in lines:
