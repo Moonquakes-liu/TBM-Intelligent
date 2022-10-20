@@ -111,7 +111,7 @@ def Update():
     filepath = os.path.join(Temp_path, 'main.zip')
     zipfile.ZipFile(filepath, 'r').extract('TBM-Intelligent-main/Update_INF', Temp_path)
     current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
-    new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\Update_INF'  # 下载的新文件名称
+    new_file_name = current_path + '\\TBM-Intelligent-main\\Update_INF'  # 下载的新文件名称
     shutil.copyfile(new_file_name, os.path.join(current_path, 'Update_INF'))  # 更新新文件
     f = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Update_INF'), encoding="utf-8")
     txt = []
