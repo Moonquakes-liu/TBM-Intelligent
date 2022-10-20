@@ -134,8 +134,8 @@ def Update():
         elif new_line[0] == 'rec':
             if new_line[1] in now_version:
                 if now_version[new_line[1]] < new_line[2]:
-                    backup_file(new_line[1], now_version[name])
-                    update_file(new_line[1], now_version[name], new_line[2], Temp_path)
+                    backup_file(new_line[1], now_version[new_line[1]])
+                    update_file(new_line[1], now_version[new_line[1]], new_line[2], Temp_path)
                     new_version = True
             else:
                 add_file(new_line[1], new_line[2], Temp_path)
