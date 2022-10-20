@@ -82,7 +82,7 @@ def reconstitution(name, new_vision, path):
 
 
 def backup_file(name, old_vision):
-    current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
+    current_path = os.path.dirname(os.path.abspath(__file__))[:-8]  # 当前文件夹路径
     old_program_path = current_path + '\\Old-Programs'  # 旧文件备份路径
     old_file_name = os.path.join(old_program_path, '%s version%s.py' % (name[:-3], old_vision))  # 要备份的旧文件名称
     if not os.path.exists(old_program_path):
@@ -92,16 +92,16 @@ def backup_file(name, old_vision):
 
 def update_file(name, now_vision, new_vision, path):
     zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
-    current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
-    new_file_name = current_path + '\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
+    current_path = os.path.dirname(os.path.abspath(__file__))[:-8]  # 当前文件夹路径
+    new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
     shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
     print(' ->->', '\033[0;33mUpdate %s Successfully! Version: %s ->-> %s\033[0m' % (name, now_vision, new_vision))
 
 
 def add_file(name, new_vision, path):
     zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
-    current_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件夹路径
-    new_file_name = current_path + '\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
+    current_path = os.path.dirname(os.path.abspath(__file__))[:-8]  # 当前文件夹路径
+    new_file_name = current_path + '\\__temp__\\TBM-Intelligent-main\\%s' % name  # 下载的新文件名称
     shutil.copyfile(new_file_name, os.path.join(current_path, name))  # 更新新文件
     print(' ->->', '\033[0;33mAdded %s successfully! Version: %s\033[0m' % (name, new_vision))
 
@@ -119,7 +119,7 @@ def Update():
         txt.append(Lines.strip())
     for new_line in txt:
         new_line = str(new_line).split('->->')
-        file_name = os.path.join(os.path.dirname(os.path.abspath(__file__)), new_line[1])
+        file_name = os.path.join(os.path.dirname(os.path.abspath(__file__))[:-8], new_line[1])
         if new_line[0] == 'add':
             add(file_name, new_line[2], new_line[3])
         elif new_line[0] == 'del':
