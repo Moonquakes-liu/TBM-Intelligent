@@ -107,3 +107,6 @@ plot_parameters_TBM(Key_Data_Output, Pic_Data_Output, Par_name)  # 调用相关�
 # ->->模块9：数据汇编<-<-
 Par_name = ['导向盾首里程', '日期', '推进位移']  # （桩号、日期、推进位移）请勿修改顺序
 TBM_REPORT().cre_pdf(Cycle_Data_Output, Pic_Data_Output, Pdf_Data_Output, Par_name)  # 调用相关模块
+
+end = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
+print('程序执行总时间:', int(end - start), 's')
