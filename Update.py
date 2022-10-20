@@ -130,6 +130,7 @@ def Update():
             reconstitution(new_line[1], new_line[2], Temp_path)
         else:
             print('\033[0;31mUnable to check for updates!!!\033[0m')
+    f.close()
     shutil.rmtree(Temp_path)
     if txt:
         print(' ->->',
