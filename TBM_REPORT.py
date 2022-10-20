@@ -149,7 +149,7 @@ class TBM_REPORT(object):
         outputStream = open(os.path.join(_out_path_, 'TBM-Data.pdf'), "wb")
         output.write(outputStream)  # 写入到目标PDF文件
         outputStream.close(), pdf_[0].close(), pdf_[1].close()  # 关闭读取的文件
-        shutil.rmtree(self.temp_content_path[:4])  # 递归删除文件夹，即：删除非空文件夹
+        shutil.rmtree(self.temp_content_path[:8])  # 递归删除文件夹，即：删除非空文件夹
 
 
 def visual(cycle, Sum, start, end, Print):
