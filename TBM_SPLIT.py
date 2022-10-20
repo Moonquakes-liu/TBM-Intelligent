@@ -15,6 +15,7 @@ import os
 import time
 import pandas as pd
 from scipy import signal
+import scipy
 
 
 time_val = []  # 初始化时间存储
