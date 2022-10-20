@@ -39,7 +39,7 @@ def Check_Update():
         from __temp__.Update import Update
 
 
-#Check_Update()  # 检查更新模块，请勿修改！！！
+Check_Update()  # 检查更新模块，请勿修改！！！
 
 
 start = time.time()  # 获取当前时刻时间（用于计算程序执行时间）
