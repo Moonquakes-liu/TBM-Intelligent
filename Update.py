@@ -122,15 +122,15 @@ def Update():
         if new_line[0] == 'add':
             if modify_time[new_line[1]] < new_line[2]:
                 add(file_name, new_line[3], new_line[4])
-            new_version = True
+                new_version = True
         elif new_line[0] == 'del':
             if modify_time[new_line[1]] < new_line[2]:
                 delete(file_name, new_line[3], new_line[4])
-            new_version = True
+                new_version = True
         elif new_line[0] == 'rep':
             if modify_time[new_line[1]] < new_line[2]:
                 replace(file_name, new_line[3], new_line[4])
-            new_version = True
+                new_version = True
         elif new_line[0] == 'rec':
             if new_line[1] in now_version:
                 if now_version[new_line[1]] < new_line[2]:
