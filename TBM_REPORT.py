@@ -23,6 +23,9 @@ from matplotlib import pyplot as plt
 
 
 warnings.filterwarnings("ignore")  # 忽略警告信息
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置字体
+plt.rcParams['axes.unicode_minus'] = False  # 坐标轴的负号正常显示
+plt.rcParams.update({'font.size': 17})  # 设置字体大小
 ROCK_GRADE = {1: 'Ⅰ', 2: 'Ⅱ', 3: 'Ⅲ', 4: 'Ⅳ', 5: 'Ⅴ', 6: 'Ⅵ'}  # 定义围岩等级和与之对应的字符表达（字典类型）
 KEY_NAME_EXAMPLE = [['Number', '', 'Start No', '', 'Start Time', ''], ['Rock mass', '', 'Length', '', 'End Time', '']]
 time_val = []
