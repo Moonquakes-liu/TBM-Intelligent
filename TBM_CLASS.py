@@ -374,7 +374,6 @@ class TBM_CLEAN(object):
                     local = except_name.index(Type)
                 if local != -1:
                     save_path = os.path.join(self.out_path + self.DIR_OUT[local], csv_file)
-                    print(cycle.loc[830:840, '推进速度(nn/M)'])
                     cycle.to_csv(save_path, index=False, encoding='gb2312')  # 保存csv文件
 
 
