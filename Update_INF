@@ -1,10 +1,5 @@
-rec->->TBM_CYCLE.py->->2.0.0->->
-rec->->TBM_REPORT.py->->2.0.0->->
-rec->->TBM_SPLIT.py->->2.0.0->->
-rec->->TBM_Main.py->->2.0.0->->
-rec->->TBM_CLASS.py->->2.0.0->->
-add->->TBM_Main.py->->2022-10-20 20:30:00->->import pandas as pd->->from TBM_CYCLE import TBM_CYCLE, key_parameter_extraction
-add->->TBM_Main.py->->2022-10-20 20:30:00->->import pandas as pd->->from TBM_REPORT import TBM_REPORT, plot_parameters_TBM
-add->->TBM_Main.py->->2022-10-20 20:30:00->->import pandas as pd->->from TBM_SPLIT import TBM_SPLIT, butter_worth_filter
-add->->TBM_Main.py->->2022-10-20 20:30:00->->import pandas as pd->->from TBM_CLASS import TBM_CLASS, TBM_CLEAN, ML_data
-rep->->TBM_Main.py->->2022-10-20 20:30:00->-># * Date:     2022-10-20 20:00:00                                            *->-># * Date:     2022-10-20 20:30:00                                            *
+rec->->TBM_CYCLE.py->->2.5.0->->
+rec->->TBM_REPORT.py->->2.5.0->->
+rec->->TBM_SPLIT.py->->2.5.0->->
+rec->->TBM_Main.py->->2.5.0->->
+rec->->TBM_CLASS.py->->2.5.0->->
