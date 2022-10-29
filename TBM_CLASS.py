@@ -92,7 +92,7 @@ class TBM_CLASS(object):
         data_len = len(data_V)  # 获取循环段长度
         data_mean, data_std = np.mean(data_V), np.std(data_V)  # 获取推进速度均值和标准差
         for i in range(data_len):
-            if data_V[i] > self.V_threshold_value or (data_V[i] > data_mean + 3 * data_std):
+            if data_V[i] > self.V_threshold_value and (data_V[i] > data_mean + 3 * data_std):
                 Anomaly_classification = 'B1'  # 异常分类B1
                 data_V[i] = sum(data_V[i - 10:i]) / 10.0  # 采用前10个推进速度的平均值进行替换
         _cycle_[self.parameter[3]] = pd.DataFrame(data_V)  # 对异常推进速度值进行替换，推进速度（self.parameter[3]）
