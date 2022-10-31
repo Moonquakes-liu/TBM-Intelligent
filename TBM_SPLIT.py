@@ -54,7 +54,7 @@ class TBM_SPLIT(object):
                 os.mkdir(self.out_path + new_dir)
 
     def write_index(self, _inf_, _Num_):
-        Root_Path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Index-File.csv')  # 索引文件存放根目录
+        Root_Path = os.path.join(os.path.dirname(os.path.abspath(__file__)))  # 索引文件存放根目录
         except_name = ['上升段起点', '稳定段起点', '稳定段终点']  # 新添加索引数据标题
         if self.first_write:  # 第一次写入索引时要写入标题
             with open(os.path.join(Root_Path, 'Index-File.csv'), 'r+', newline='', encoding='gb2312') as f:  # 只写模式打开文件
