@@ -104,7 +104,7 @@ class TBM_REPORT(object):
             ("TEXTCOLOR", (0, 0), (-1, -1), colors.black),  # 字体颜色
             ('SPAN', (0, 0), (-1, 0)),  # 合并单元格
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'), ('VALIGN', (0, 0), (-1, -1), 'MIDDLE')})  # 左右上下居中
-        sheet.argH[0] = 8*mm  # 调整目录名称行高
+        sheet._argH[0] = 8*mm  # 调整目录名称行高
         sheet.wrapOn(Object, 0, 0)  # 将sheet添加到Canvas中
         sheet.drawOn(Object, 36*mm, 25*mm)  # 将sheet添加到Canvas中
 
