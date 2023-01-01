@@ -2437,7 +2437,7 @@ def Check_Update():
 __history__()
 
 if __name__ == "__main__":
-    # Check_Update()  # 检查程序是否存在新版本
+    Check_Update()  # 检查程序是否存在新版本
     main = message()  # 调用窗口获取输入输出路径及相关参数，完成对程序的配置
     print(' ->->', '\033[0;32m程序配置完成，准备运行...\033[0m')
     run = False
