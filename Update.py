@@ -77,7 +77,7 @@ def backup_file(name, old_vision):
     shutil.copyfile(os.path.join(current_path, name), old_file_name)  # 备份旧文件
 
 
-def update_file(name, now_vision, new_vision, path):
+def update_file(name, now_vision, new_vision):
     # zipfile.ZipFile(os.path.join(path, 'main.zip'), 'r').extract('TBM-Intelligent-main/%s' % name, path)
     current_path = os.path.dirname(os.path.abspath(__file__))[:-10]  # 当前文件夹路径
     new_file_name = os.path.join(current_path, '__Update__', '%s' % name)  # 下载的新文件名称
@@ -135,7 +135,7 @@ def Update():
             if new_line[1] in now_version:
                 if now_version[new_line[1]] < new_line[2]:
                     backup_file(new_line[1], now_version[new_line[1]])
-                    update_file(new_line[1], now_version[new_line[1]], new_line[2], Temp_path)
+                    update_file(new_line[1], now_version[new_line[1]], new_line[2])
                     new_version = True
             else:
                 add_file(new_line[1], new_line[2], Temp_path)
