@@ -2037,7 +2037,7 @@ def Check_Update():
 
 if __name__ == "__main__":
     import sys
-    # Check_Update()  # 检查程序是否存在新版本
+    Check_Update()  # 检查程序是否存在新版本
     print(' ->', "\033[0;32mOperating System: %s  Current Program: %s\033[0m" % (sys.platform, sys.argv[0]))
     CONF = MESSAGE().config  # 调用窗口获取输入输出路径及相关参数，完成对程序的配置
     index_path = CONF[0]['INDEX-PATH']
