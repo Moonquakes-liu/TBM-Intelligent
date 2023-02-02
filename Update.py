@@ -195,7 +195,6 @@ def Update():
                     update_info.append('%s: %s' % (Operate_File, parser[info]['INFORMATION']))
         except KeyError:
             pass
-    shutil.rmtree(os.path.join(root_path, '__Update__'))  # 更新完成，删除相关文件记录
     if update_info:
         print(' ->->', '\033[0;33m更新内容:\033[0m')
         for i in update_info:
@@ -205,6 +204,7 @@ def Update():
                        'You can recovery it here!\033[0m')
     if update_info:
         print(' ->->', '\033[0;32mUpdate complete, Please Restart the program!\033[0m')
+        shutil.rmtree(os.path.join(root_path, '__Update__'))  # 更新完成，删除相关文件记录
         sys.exit()
         
 
