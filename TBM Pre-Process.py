@@ -2457,7 +2457,7 @@ class MESSAGE(object):
                 zipfile.ZipFile(self.update['update'].get(), mode='r').extractall(root_path)
                 from __Update__.Update import Update
                 messagebox.showinfo(title='提示', message='更新程序成功')  # 消息提醒弹
-            except (zipfile.BadZipFile, ModuleNotFoundError):
+            except (zipfile.BadZipFile, ModuleNotFoundError, FileNotFoundError):
                 messagebox.showinfo(title='提示', message='未选择更新文件或更新文件非法！')  # 消息提醒弹
         if os.path.exists(root_path):
             shutil.rmtree(root_path)
@@ -2751,7 +2751,7 @@ def Check_Update():
 
 
 if __name__ == "__main__":
-    # Check_Update()  # 检查程序是否存在新版本
+    Check_Update()  # 检查程序是否存在新版本
     print('-> \033[0;32mOperating System: %s  Current Program: %s\033[0m' % (sys.platform, os.path.basename(__file__)))
     CONF = MESSAGE().config  # 调用窗口获取输入输出路径及相关参数，完成对程序的配置
     if CONF[1]['USING-MODEL']:
