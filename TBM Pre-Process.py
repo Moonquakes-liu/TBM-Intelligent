@@ -2323,7 +2323,7 @@ class MESSAGE(object):
     def Help_Event():
         """打开帮助文件"""
         try:
-            os.startfile('Resource\\helps\\Support.pdf')
+            os.startfile('Resource\\helps\\程序说明.pdf')
         except FileNotFoundError:
             messagebox.showwarning(title='提 示', message='帮助文件不存在！')  # 消息提醒弹
 
