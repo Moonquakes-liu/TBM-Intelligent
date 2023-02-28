@@ -3,8 +3,8 @@
 # ************************************************************************
 # * Software:  TBM Pre-Process  for  Python                              *
 # * Version:  1.0.3                                                      *
-# * Date:  2023-02-20 00:00:00                                           *
-# * Last  update: 2023-02-06 00:00:00                                    *
+# * Date:  2023-02-06 00:00:00                                           *
+# * Last  update: 2023-02-28 00:00:00                                    *
 # * License:  LGPL v1.0                                                  *
 # * Maintain  address:  https://pan.baidu.com/s/1SKx3np-9jii3Zgf1joAO4A  *
 # * Maintain  code:  STBM                                                *
@@ -1280,8 +1280,8 @@ class TBM_SPLIT(object):
                 RS_Index = {'name': file, '上升段起点': 'Unknown', '稳定段起点': 'Unknown', '稳定段终点': 'Unknown'}
             self.write_index(RS_Index)  # 索引文件中内容写入
             self.detail(name=file, data=data, debug=self.debug, Parm=[self.parm[4]],
-                        key=['上升段起点:', int(RS_Index['上升段起点']), '稳定段起点:', int(RS_Index['稳定段起点']),
-                             '稳定段终点:', int(RS_Index['稳定段终点'])])  # DEBUG
+                        key=['上升段起点:', RS_Index['上升段起点'], '稳定段起点:', RS_Index['稳定段起点'],
+                             '稳定段终点:', RS_Index['稳定段终点']])  # DEBUG
             time_F = time.time()  # 记录程序执行结束时间
             self.show_info(use_time=time_F - time_S, file_num=num, file_sum=len(all_file))
 
@@ -1429,7 +1429,8 @@ class TBM_SPLIT(object):
             plt.legend()
             plt.xlabel("时间/s", fontsize=15)
             for color, information in zip(['g', 'r', 'y', 'b'], Divide):
-                plt.axvline(x=information, c=color, ls="-.")
+                if isinstance(information, int):
+                    plt.axvline(x=int(information), c=color, ls="-.")
             plt.show()
             plt.close()
             print("\033[0;33m{:·^100}\033[0m".format(name))
