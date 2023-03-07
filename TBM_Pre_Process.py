@@ -221,7 +221,7 @@ class TBM_CYCLE(object):
         :return: 读取的数据集（DataFrame）
         """
         import sys
-        if os.path.splitext(file_path)[-1] == '.zip':  # 仅读取csv类型文件
+        if os.path.splitext(file_path)[-1] == '.csv':  # 仅读取csv类型文件
             try:  # 首先尝试使用'gb2312'编码进行csv文件读取
                 data = pd.read_csv(file_path, encoding='gb2312')  # 读取文件
             except UnicodeDecodeError:  # 若默认方式读取csv文件失败，则更换为' utf-8 '编码后重新进行尝试
@@ -334,8 +334,7 @@ class TBM_CYCLE(object):
         :param file_path: 原始数据存放路径
         :return: 读取的原始数据
         """
-        from TBM智能化.其他.读取zip文件 import custom_read1
-        return custom_read1(file_path=file_path)
+        pass
 
 
 class TBM_EXTRACT(object):
