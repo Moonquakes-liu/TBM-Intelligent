@@ -1,0 +1,20 @@
+[program]
+time = 2024-02-06 21:27:39
+name = TBM Pre-process v1.0.5
+
+[Resources]
+file = Resources.zip
+path = \Resources.zip
+size = 97678 bayes
+creative = 2024-02-06 21:27:05
+modify = 2024-02-06 21:27:05
+md5 = c7b6390963af48bed2b14be40ebf37ba
+
+[Update]
+file = Update.py
+path = \Update.py
+size = 3493 bayes
+creative = 2024-01-19 21:36:46
+modify = 2024-02-05 00:42:01
+md5 = e92c5b30e88161680244fa416db8f783
+
