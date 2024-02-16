@@ -103,7 +103,7 @@ def Update(Object):
     except Exception:
         pass
     finally:
-        if os.path.exists(temp_path):
-            shutil.rmtree(temp_path)
         if os.path.exists(backup_path_temp):
             shutil.rmtree(backup_path_temp)
+        if os.path.exists(temp_path):
+            shutil.rmtree(temp_path)   
