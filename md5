@@ -1,0 +1,22 @@
+[program]
+name = TBM Pre-process
+time = 2024-02-18 18:38:04
+version = 1.0.6
+information = 优化界面布局。；优化高级设置功能选择方式。；新增从外部导入自定义模块功能。；新增以”米“和按”环号“进行循环段划分功能。；修复部分bug。
+
+[Resources]
+file = Resources.zip
+path = \Resources.zip
+size = 600972 bayes
+creative = 2024-02-18 18:38:12
+modify = 2024-02-18 18:38:12
+md5 = 3a39d0743c6227d158fa1b1dc66cfadb
+
+[Update]
+file = Update.py
+path = \Update.py
+size = 6334 bayes
+creative = 2024-02-18 18:38:12
+modify = 2024-02-18 18:38:12
+md5 = 7320fb704dd3bbc3b90fa1c23f3eed0f
+
